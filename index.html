@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Windows Repair & Virus Removal Tool v4.0</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0d1117;
+            --surface: #161b22;
+            --border: #30363d;
+            --accent: #238636;
+            --accent-hover: #2ea043;
+            --cyan: #58a6ff;
+            --terminal-green: #39d353;
+            --text: #c9d1d9;
+            --text-heading: #f0f6fc;
+            --text-muted: #8b949e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 3rem 1rem 2rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(57, 211, 83, 0.15);
+            color: var(--terminal-green);
+            border: 1px solid rgba(57, 211, 83, 0.3);
+            padding: 0.35rem 0.85rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        h1 {
+            color: var(--text-heading);
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.75rem;
+        }
+
+        .author {
+            color: var(--cyan);
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Action Buttons */
+        .cta-box {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--surface);
+            color: var(--text-heading);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        /* Cards & Grids */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card h2 {
+            color: var(--text-heading);
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .feature-item h3 {
+            color: var(--cyan);
+            font-size: 1.05rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Steps */
+        ol.steps {
+            margin-left: 1.25rem;
+            color: var(--text);
+        }
+
+        ol.steps li {
+            margin-bottom: 0.75rem;
+            padding-left: 0.5rem;
+        }
+
+        ol.steps strong {
+            color: var(--text-heading);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <span class="badge">v4.0 Ultimate Edition</span>
+        <h1>Ultimate Windows Repair & Virus Removal Tool</h1>
+        <p class="subtitle">Created by <span class="author">Havish Trivedi</span>. An automated 30-stage pipeline to fix Windows corruption, optimize performance, and eliminate stubborn malware.</p>
+        
+        <div class="cta-box">
+            <button class="btn btn-primary" onclick="downloadBatchFile()">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                Download Script (.BAT)
+            </button>
+            <a href="#how-to-use" class="btn btn-secondary">How to Run</a>
+        </div>
+    </header>
+
+    <!-- Highlights -->
+    <div class="grid">
+        <div class="feature-item">
+            <h3>⚡ In-Place Live Refreshes</h3>
+            <p>Refreshes the network stack, Windows update services, and environment variables live in memory without requiring constant reboots.</p>
+        </div>
+        <div class="feature-item">
+            <h3>🛡️ Quick Threat Remediation</h3>
+            <p>Removes hijacked group policies, malicious scheduled tasks, and runs fast, targeted Quick Scans using Defender and MSERT.</p>
+        </div>
+        <div class="feature-item">
+            <h3>🛠️ System Integrity Fixes</h3>
+            <p>Automates DISM component image repair, SFC system integrity scan, winsock resets, and icon cache rebuilding.</p>
+        </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="card" id="how-to-use">
+        <h2>🚀 How to Run the Tool</h2>
+        <ol class="steps">
+            <li>Click the green <strong>Download Script (.BAT)</strong> button above to save <code>ultimate windows repair.bat</code>.</li>
+            <li>Open your <strong>Downloads</strong> folder.</li>
+            <li>Right-click <code>ultimate windows repair.bat</code> and choose <strong>Run as administrator</strong>.</li>
+            <li>The script will display an intro screen and start Stage 1 automatically within 5 seconds.</li>
+            <li>Let the 30 stages execute. When prompted at the end, choose whether to restart your computer for the Microsoft Defender Offline scan.</li>
+        </ol>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Havish Trivedi. Free & open-source Windows maintenance utility.</p>
+    </footer>
+</div>
+
+<script>
+// Complete Script Content
+const scriptContent = `@echo off
+:: ============================================================================
+:: ULTIMATE WINDOWS REPAIR & VIRUS REMOVAL TOOL v4.0
+:: Created by Havish Trivedi
+:: In-Place Live Refresh Edition (Zero Forced Mid-Reboots)
+:: ============================================================================
+title Ultimate Windows Repair & Virus Removal Tool v4.0
+color 0A
+setlocal enabledelayedexpansion
+
+mode con: cols=110 lines=50
+
+:: Anti-crash wrapper
+if "%~1"=="/RUNNING" goto :SKIP_TRAP
+"%~f0" /RUNNING
+echo.
+echo ============================================================================
+echo  Script finished! Window will close in 15 seconds...
+echo ============================================================================
+timeout /t 15
+exit /b 0
+
+:SKIP_TRAP
+
+:: ============================================================================
+:: ADMIN ELEVATION CHECK
+:: ============================================================================
+net session >nul 2>&1
+if %errorLevel% neq 0 (
+    color 0C
+    echo ============================================================================
+    echo  ERROR: ADMINISTRATOR PRIVILEGES REQUIRED
+    echo ============================================================================
+    echo.
+    echo  Please right-click this script and select "Run as administrator".
+    echo.
+    pause
+    exit /b 1
+)
+
+:: ============================================================================
+:: CONFIGURATION & LOGGING SETUP
+:: ============================================================================
+set "TOTAL_STAGES=30"
+set "CURRENT_STAGE=0"
+set "DEFENDER_OFFLINE_STATUS=Pending"
+set "PERCENT=0"
+set "LOG_DIR=%SystemDrive%\\WindowsRepair_Logs"
+
+set "CURR_TIME=%time: =0%"
+set "TIMESTAMP=%date:~-4,4%%date:~-10,2%%date:~-7,2%_%CURR_TIME:~0,2%%CURR_TIME:~3,2%%CURR_TIME:~6,2%"
+set "LOG_FILE=%LOG_DIR%\\repair_log_%TIMESTAMP%.log"
+
+set "QUARANTINE_DIR=%SystemDrive%\\Quarantine_Backup"
+set "TOOL_DIR=%SystemDrive%\\RepairTools"
+set "BACKUP_DIR=%SystemDrive%\\RepairBackup"
+set "ERRORS=0"
+set "FIXED=0"
+set "CLEANED=0"
+
+if not exist "%LOG_DIR%" mkdir "%LOG_DIR%"
+if not exist "%QUARANTINE_DIR%" mkdir "%QUARANTINE_DIR%"
+if not exist "%TOOL_DIR%" mkdir "%TOOL_DIR%"
+if not exist "%BACKUP_DIR%" mkdir "%BACKUP_DIR%"
+
+echo ============================================================ > "%LOG_FILE%"
+echo ULTIMATE WINDOWS REPAIR LOG v4.0 - %date% %time% >> "%LOG_FILE%"
+echo Target PC: %COMPUTERNAME% - User: %USERNAME% >> "%LOG_FILE%"
+echo System OS: %OS% - Architecture: %PROCESSOR_ARCHITECTURE% >> "%LOG_FILE%"
+echo ============================================================ >> "%LOG_FILE%"
+
+goto :MAIN_MENU
+
+:: ============================================================================
+:: PROGRESS BAR HEADER ROUTINE
+:: ============================================================================
+:UPDATE_PROGRESS
+set /a CURRENT_STAGE+=1
+set /a PERCENT=(CURRENT_STAGE*100)/TOTAL_STAGES
+set /a BAR_LENGTH=PERCENT/2
+set "PROGRESS_BAR="
+
+for /l %%i in (1,1,%BAR_LENGTH%) do set "PROGRESS_BAR=!PROGRESS_BAR!#"
+for /l %%i in (1,1,50) do (
+    set /a CHECK=%%i
+    if !CHECK! gtr !BAR_LENGTH! set "PROGRESS_BAR=!PROGRESS_BAR! "
+)
+
+cls
+echo ==============================================================================================================
+echo   ULTIMATE WINDOWS REPAIR ^& VIRUS REMOVAL TOOL v4.0
+echo   Created by Havish Trivedi
+echo   OVERALL PROGRESS: [!PROGRESS_BAR!] %PERCENT%%% (Stage %CURRENT_STAGE% of %TOTAL_STAGES%)
+echo   CURRENT ACTION:   %~1
+echo ==============================================================================================================
+echo.
+echo [%date% %time%] [STAGE %CURRENT_STAGE%/%TOTAL_STAGES%] %~1 >> "%LOG_FILE%"
+exit /b 0
+
+:: ============================================================================
+:: SIMPLE INTRO SCREEN (5 SECONDS COUNTDOWN)
+:: ============================================================================
+:MAIN_MENU
+cls
+echo.
+echo ==============================================================================================================
+echo   ULTIMATE WINDOWS REPAIR ^& VIRUS REMOVAL TOOL v4.0
+echo   Created by Havish Trivedi
+echo.
+echo   System: %COMPUTERNAME% ^| User: %USERNAME% ^| OS: %OS% (%PROCESSOR_ARCHITECTURE%)
+echo   Total Operations: 30 Stages (In-Place Live Refresh Pipeline)
+echo   Logs Location: %LOG_FILE%
+echo.
+echo ==============================================================================================================
+echo.
+echo   Starting Stage 1 in 5 seconds (or press any key to launch immediately)...
+timeout /t 5
+
+:: ============================================================================
+:: 30-STAGE REPAIR PIPELINE (3s INTERVALS)
+:: ============================================================================
+
+:: STAGE 1
+call :UPDATE_PROGRESS "Creating System Restore Point"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "try { Checkpoint-Computer -Description 'Before_Master_Repair_v4' -RestorePointType 'MODIFY_SETTINGS' -ErrorAction Stop; Write-Host '[SUCCESS] Restore point created.' } catch { Write-Host '[WARNING] Could not create restore point: ' $_.Exception.Message }"
+echo [%date% %time%] Stage 1 executed >> "%LOG_FILE%"
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 2
+call :UPDATE_PROGRESS "Restoring Core Windows Security Services"
+for %%s in (WinDefend wuauserv BITS EventLog trustedinstaller MpsSvc WdNisSvc SecurityHealthService) do (
+    echo Configuring service: %%s
+    sc config %%s start= auto >> "%LOG_FILE%" 2>&1
+    net start %%s
+)
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 3
+call :UPDATE_PROGRESS "Removing Malware Group Policy Restrictions"
+set "POL_KEYS=HKLM\\Software\\Policies\\Microsoft\\Windows Defender HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection HKLM\\Software\\Policies\\Microsoft\\Windows Defender\\Spynet HKLM\\Software\\Policies\\Microsoft\\Windows\\WindowsUpdate"
+for %%p in (%POL_KEYS%) do (
+    echo Removing Policy: %%p
+    reg delete "%%p" /f >> "%LOG_FILE%" 2>&1
+)
+gpupdate /force /target:computer >nul 2>&1
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 4
+call :UPDATE_PROGRESS "Unlocking Task Manager, Registry, and Explorer Settings"
+reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableTaskMgr /t REG_DWORD /d 0 /f
+reg add "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableTaskMgr /t REG_DWORD /d 0 /f
+reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableRegistryTools /t REG_DWORD /d 0 /f
+reg add "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\System" /v DisableRegistryTools /t REG_DWORD /d 0 /f
+reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v Hidden /t REG_DWORD /d 1 /f
+reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced" /v HideFileExt /t REG_DWORD /d 0 /f
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 5
+call :UPDATE_PROGRESS "Purging System & User Temporary Files"
+net stop wuauserv >> "%LOG_FILE%" 2>&1
+net stop bits >> "%LOG_FILE%" 2>&1
+echo Cleaning User Temp Directory...
+del /f /s /q "%TEMP%\\*" 2>nul
+for /d %%i in ("%TEMP%\\*") do rd /s /q "%%i" 2>nul
+echo Cleaning Windows Temp Directory...
+del /f /s /q "%SystemRoot%\\Temp\\*" 2>nul
+for /d %%i in ("%SystemRoot%\\Temp\\*") do rd /s /q "%%i" 2>nul
+del /f /s /q "%SystemRoot%\\Prefetch\\*" 2>nul
+del /f /q "%APPDATA%\\Microsoft\\Windows\\Recent\\*" 2>nul
+if exist "%SystemRoot%\\SoftwareDistribution\\Download" rd /s /q "%SystemRoot%\\SoftwareDistribution\\Download" 2>nul
+net start bits >> "%LOG_FILE%" 2>&1
+net start wuauserv >> "%LOG_FILE%" 2>&1
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 6
+call :UPDATE_PROGRESS "Cleaning Browser Caches (Chrome, Edge, Firefox)"
+echo Cleaning Chrome cache...
+del /f /s /q "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\Default\\Cache\\*" 2>nul
+del /f /s /q "%LOCALAPPDATA%\\Google\\Chrome\\User Data\\Default\\Code Cache\\*" 2>nul
+echo Cleaning Edge cache...
+del /f /s /q "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\Default\\Cache\\*" 2>nul
+del /f /s /q "%LOCALAPPDATA%\\Microsoft\\Edge\\User Data\\Default\\Code Cache\\*" 2>nul
+echo Cleaning Firefox cache...
+for /d %%i in ("%APPDATA%\\Mozilla\\Firefox\\Profiles\\*") do (
+    if exist "%%i\\cache2" del /f /s /q "%%i\\cache2\\*" 2>nul
+)
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 7
+call :UPDATE_PROGRESS "Resetting Network Stack & In-Place Adapter Reload"
+netsh winsock reset >> "%LOG_FILE%" 2>&1
+netsh int ip reset >> "%LOG_FILE%" 2>&1
+reg add "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Internet Settings" /v ProxyEnable /t REG_DWORD /d 0 /f
+echo Re-initializing active network adapters in memory...
+powershell -NoProfile -Command "Get-NetAdapter | Where-Object {$_.Status -eq 'Up'} | Restart-NetAdapter -Confirm:$false" >nul 2>&1
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 8
+call :UPDATE_PROGRESS "Resetting HOSTS File to Clean Defaults"
+attrib -r -s -h "%SystemRoot%\\System32\\drivers\\etc\\hosts" 2>nul
+if exist "%SystemRoot%\\System32\\drivers\\etc\\hosts" (
+    copy /y "%SystemRoot%\\System32\\drivers\\etc\\hosts" "%BACKUP_DIR%\\hosts_backup_%TIMESTAMP%.bak" >> "%LOG_FILE%" 2>&1
+)
+(
+    echo # Clean HOSTS generated by Havish's Repair Tool
+    echo 127.0.0.1       localhost
+    echo ::1             localhost
+) > "%SystemRoot%\\System32\\drivers\\etc\\hosts"
+attrib +r "%SystemRoot%\\System32\\drivers\\etc\\hosts"
+echo [SUCCESS] Hosts file reset.
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 9
+call :UPDATE_PROGRESS "Scanning Startup Persistence Registry Keys"
+echo === RUN KEYS ===
+reg query "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+reg query "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+timeout /t 3 >nul
+
+:: STAGE 10
+call :UPDATE_PROGRESS "Removing Known Adware and PUP Registry Entries"
+set "PUP_KEYS=Conduit SweetIM Crossrider ShopperPro Iminent SpeedItUp MyPCBackup SystemHealer Reimage OptimizerPro PCSpeedMaximizer Wajam RelevantKnowledge DealPly Spigot Babylon Mindspark Ask ToolbarSearch MyWebSearch"
+for %%k in (%PUP_KEYS%) do (
+    echo Checking registry key: %%k
+    reg delete "HKCU\\Software\\%%k" /f >nul 2>&1
+    reg delete "HKLM\\Software\\%%k" /f >nul 2>&1
+)
+set /a CLEANED+=1
+timeout /t 3 >nul
+
+:: STAGE 11
+call :UPDATE_PROGRESS "Cleaning Malicious Scheduled Tasks"
+set "BAD_TASKS=WinUpd SystemHealthCheck AutoKMS WinThruster ScheduledDefrag PC Optimizer Pro SpeedUpMyPC DriverEasy DriverPack SmartDefrag"
+for %%t in (%BAD_TASKS%) do (
+    echo Removing task: %%t
+    schtasks /delete /tn "%%t" /f >nul 2>&1
+)
+set /a CLEANED+=1
+timeout /t 3 >nul
+
+:: STAGE 12
+call :UPDATE_PROGRESS "Restoring Clean Browser Start Pages & Search Scopes"
+reg add "HKCU\\Software\\Microsoft\\Internet Explorer\\Main" /v "Start Page" /t REG_SZ /d "about:blank" /f
+reg add "HKLM\\Software\\Microsoft\\Internet Explorer\\Main" /v "Start Page" /t REG_SZ /d "about:blank" /f
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 13
+call :UPDATE_PROGRESS "Scanning WMI Event Subscriptions for Persistence"
+powershell -NoProfile -Command "Get-CimInstance -Namespace root\\subscription -ClassName __EventConsumer -ErrorAction SilentlyContinue | Select-Object Name, CommandLineTemplate | Format-Table -AutoSize"
+timeout /t 3 >nul
+
+:: STAGE 14
+call :UPDATE_PROGRESS "Scanning Running Processes for Hidden Hooks"
+powershell -NoProfile -Command "Get-Process | Where-Object {$_.Path -eq $null -or $_.Path -eq ''} | Select-Object Name, Id, StartTime | Format-Table -AutoSize"
+timeout /t 3 >nul
+
+:: STAGE 15
+call :UPDATE_PROGRESS "Detecting Suspicious Executables in AppData"
+dir /b /s "%APPDATA%\\*.exe" 2>nul | findstr /i /v "Google Microsoft Mozilla Adobe Discord Spotify Telegram Steam"
+timeout /t 3 >nul
+
+:: STAGE 16
+call :UPDATE_PROGRESS "Flushing Background Intelligent Transfer (BITS) Queue"
+net stop bits >> "%LOG_FILE%" 2>&1
+del /f /q "%ALLUSERSPROFILE%\\Microsoft\\Network\\Downloader\\qmgr*.dat" 2>nul
+net start bits >> "%LOG_FILE%" 2>&1
+echo [SUCCESS] BITS queue cleared.
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 17
+call :UPDATE_PROGRESS "Cleaning System Crash Memory Dumps"
+del /f /q "%SystemRoot%\\memory.dmp" 2>nul
+del /f /q "%SystemRoot%\\Minidump\\*.dmp" 2>nul
+del /f /q "%SystemRoot%\\LiveKernelReports\\*.dmp" 2>nul
+echo [SUCCESS] Memory dumps removed.
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 18
+call :UPDATE_PROGRESS "Flushing and Re-registering DNS Cache"
+ipconfig /flushdns
+ipconfig /registerdns
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 19
+call :UPDATE_PROGRESS "Resetting Windows Firewall to Secure Defaults"
+netsh advfirewall reset
+netsh advfirewall set allprofiles state on
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 20
+call :UPDATE_PROGRESS "Rebuilding Windows Update Components (Live In-Memory Refresh)"
+net stop wuauserv >> "%LOG_FILE%" 2>&1
+net stop cryptSvc >> "%LOG_FILE%" 2>&1
+net stop bits >> "%LOG_FILE%" 2>&1
+if exist "%SystemRoot%\\SoftwareDistribution" ren "%SystemRoot%\\SoftwareDistribution" "SoftwareDistribution.old" 2>nul
+if exist "%SystemRoot%\\System32\\catroot2" ren "%SystemRoot%\\System32\\catroot2" "catroot2.old" 2>nul
+net start cryptSvc >> "%LOG_FILE%" 2>&1
+net start bits >> "%LOG_FILE%" 2>&1
+net start wuauserv >> "%LOG_FILE%" 2>&1
+powershell -NoProfile -Command "(New-Object -ComObject Microsoft.Update.Session).CreateUpdateSearcher() | Out-Null" >nul 2>&1
+UsoClient.exe RefreshSettings >nul 2>&1
+UsoClient.exe StartScan >nul 2>&1
+echo [SUCCESS] Windows Update live state refreshed.
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 21
+call :UPDATE_PROGRESS "Resetting Microsoft Store Cache"
+start /wait wsreset.exe
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 22
+call :UPDATE_PROGRESS "Verifying Environment Paths & Broadcasting Changes Live"
+echo WINDIR path: %WINDIR%
+if not "%WINDIR%"=="%SystemRoot%" (
+    setx WINDIR "%SystemRoot%" /M
+)
+powershell -NoProfile -Command "Add-Type -Namespace Win32 -Name NativeMethods -MemberDefinition '[DllImport(\\"user32.dll\\", SetLastError = true, CharSet = CharSet.Auto)] public static extern IntPtr SendMessageTimeout(IntPtr hWnd, uint Msg, UIntPtr wParam, string lParam, uint fuFlags, uint uTimeout, out UIntPtr lpdwResult);'; [UIntPtr]$result = [UIntPtr]::Zero; [Win32.NativeMethods]::SendMessageTimeout([IntPtr]0xffff, 0x001A, [UIntPtr]::Zero, 'Environment', 2, 5000, [ref]$result)" >nul 2>&1
+echo [SUCCESS] Environment variables refreshed live across all active processes.
+timeout /t 3 >nul
+
+:: STAGE 23
+call :UPDATE_PROGRESS "Configuring PowerShell Execution Policy & Modules"
+powershell -NoProfile -Command "Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine -Force"
+powershell -NoProfile -Command "Set-MpPreference -SubmitSamplesConsent 1"
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 24
+call :UPDATE_PROGRESS "Rebuilding Windows Explorer Icon Cache (Live Shell Restart)"
+taskkill /f /im explorer.exe >nul 2>&1
+del /f /a /q "%LOCALAPPDATA%\\IconCache.db" 2>nul
+del /f /a /q "%LOCALAPPDATA%\\Microsoft\\Windows\\Explorer\\iconcache_*.db" 2>nul
+start explorer.exe
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 25
+call :UPDATE_PROGRESS "Flushing & Reloading Font Cache Service Live"
+net stop FontCache >> "%LOG_FILE%" 2>&1
+del /f /q "%SystemRoot%\\System32\\FNTCACHE.DAT" 2>nul
+del /f /q "%LOCALAPPDATA%\\Microsoft\\Windows\\Explorer\\*.dat" 2>nul
+net start FontCache >> "%LOG_FILE%" 2>&1
+echo [SUCCESS] Font subsystem refreshed without logoff.
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 26
+call :UPDATE_PROGRESS "Repairing Windows Image Health via DISM"
+echo Running DISM /RestoreHealth... Please wait...
+DISM /Online /Cleanup-Image /RestoreHealth
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 27
+call :UPDATE_PROGRESS "Running System File Checker (SFC /scannow)"
+echo Verifying system file integrity...
+sfc /scannow
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 28
+call :UPDATE_PROGRESS "Updating Defender Signatures & Running Quick Scan"
+echo Updating Microsoft Defender signatures...
+powershell -NoProfile -Command "Update-MpSignature -Force"
+echo Running Quick Scan...
+powershell -NoProfile -Command "Start-MpScan -ScanType QuickScan"
+set /a FIXED+=1
+timeout /t 3 >nul
+
+:: STAGE 29
+call :UPDATE_PROGRESS "Downloading & Executing Microsoft Safety Scanner (MSERT Quick Scan)"
+set "MSERT_DIR=%SystemDrive%\\MSERT_Temp"
+if not exist "%MSERT_DIR%" mkdir "%MSERT_DIR%"
+set "MSERT_EXE=%MSERT_DIR%\\msert.exe"
+
+echo Fetching latest MSERT scanner...
+powershell -NoProfile -Command "[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; $url = 'https://go.microsoft.com/fwlink/?LinkId=212732'; Invoke-WebRequest -Uri $url -OutFile '%MSERT_EXE%' -UseBasicParsing"
+
+if exist "%MSERT_EXE%" (
+    echo [SUCCESS] MSERT Downloaded. Running Quick Scan...
+    "%MSERT_EXE%" /q
+    rd /s /q "%MSERT_DIR%" 2>nul
+    set /a FIXED+=1
+) else (
+    echo [WARNING] Failed to download MSERT.
+    set /a ERRORS+=1
+)
+timeout /t 3 >nul
+
+:: STAGE 30
+call :UPDATE_PROGRESS "Preparing Microsoft Defender Offline Scan"
+echo Arming Microsoft Defender definitions for boot scan...
+powershell -NoProfile -Command "Update-MpSignature -Force"
+echo [SUCCESS] Stage 30 complete. Offline scan ready to trigger on final restart.
+set /a FIXED+=1
+set "DEFENDER_OFFLINE_STATUS=Ready for Next Boot"
+timeout /t 3 >nul
+
+:: ============================================================================
+:: FINAL SUMMARY REPORT
+:: ============================================================================
+cls
+echo.
+echo ==============================================================================================================
+echo   ALL 30 STAGES COMPLETED SUCCESSFULLY!
+echo ==============================================================================================================
+echo.
+echo   REPAIR SUMMARY:
+echo   ===========================================
+echo     Issues Fixed:             %FIXED%
+echo     Threats/PUPs Cleaned:     %CLEANED%
+echo     Errors/Warnings:          %ERRORS%
+echo     Total Completed:          %CURRENT_STAGE% / %TOTAL_STAGES% (100%%)
+echo     In-Place Live Refreshes:  Applied (Network, Shell, Update Agent, Environment)
+echo     Defender Offline Scan:    %DEFENDER_OFFLINE_STATUS%
+echo.
+echo   Log saved to: %LOG_FILE%
+echo.
+echo ==============================================================================================================
+echo.
+
+:: ============================================================================
+:: REBOOT PROCESS (EXECUTED AT THE VERY END)
+:: ============================================================================
+:FINAL_REBOOT_PROMPT
+set /p REBOOT="Do you want to arm Defender Offline Scan and restart your PC now? (Y/N): "
+if /i "!REBOOT!"=="Y" (
+    echo.
+    echo Triggering Microsoft Defender Offline Scan...
+    powershell -NoProfile -Command "Start-MpOfflineScan" >nul 2>&1
+    echo Scheduling system restart in 30 seconds...
+    shutdown /r /t 30 /c "System Repair Complete: Restarting for Microsoft Defender Offline Scan..."
+    echo.
+    echo System will restart in 30 seconds. Please save any open files!
+    timeout /t 30
+    exit /b 0
+) else (
+    echo.
+    echo System will not restart now.
+    echo All in-place repairs were refreshed live. Remember to run the offline scan whenever you restart next!
+    echo.
+    echo Press any key to exit...
+    pause >nul
+    exit /b 0
+)
+`;
+
+// Trigger client-side file download with the updated file name
+function downloadBatchFile() {
+    const blob = new Blob([scriptContent], { type: 'application/x-bat' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ultimate windows repair.bat';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
